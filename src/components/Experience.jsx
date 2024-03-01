@@ -13,8 +13,13 @@ import Camping from "../components/Camping"
 import { degToRad, lerp } from "three/src/math/MathUtils"
 import { useRef, useLayoutEffect, useEffect } from "react"
 import { currentPageAtom } from "./UI"
-import { Reflector, Text3D } from "@react-three/drei"
+import { Reflector, Text3D, useTexture } from "@react-three/drei"
+// import { useLoader } from "@react-three/fiber"
+// import * as THREE from "three"
+
 import antaFont from "/Users/michaelmartell/Documents/CODE/Web/2024 Projects/reactFiber/public/fonts/Anta_Regular.json"
+
+// const texture = useLoader(THREE.TextureLoader, "/path/to/your/image.png")
 
 const bloomColor = new Color("#fff")
 bloomColor.multiplyScalar(1.5)
@@ -63,6 +68,8 @@ const Experience = () => {
 		window.addEventListener("resize", fitCamera)
 		return () => window.removeEventListener("resize", fitCamera)
 	}, [currentPage])
+
+	const matcap = useTexture("./textures/black-pearl.png")
 
 	return (
 		<>
@@ -146,24 +153,12 @@ const Experience = () => {
 				// fontSize={0.5}
 			>
 				OUTDOORS
-				<meshBasicMaterial
-					color={bloomColor}
+				<meshMatcapMaterial matcap={matcap} flatshading={false} />
+				{/* <meshBasicMaterial
+					// color={bloomColor}
 					toneMapped={false}
-					ref={textMaterial}>
-					{/* places the rotating map as a texture upon the text. */}
-					{/* <RenderTexture attach={"map"}>
-						<color attach="background" args={["#fff"]} />
-						<Environment preset="sunset" />
-						<Float floatIntensity={4} rotationIntensity={5}>
-							<Camping
-								scale={1.6}
-								rotation-y={-degToRad(25)}
-								rotation-x={degToRad(40)}
-								position-y={-0.5}
-							/>
-						</Float>
-					</RenderTexture> */}
-				</meshBasicMaterial>
+					ref={textMaterial}> 
+				</meshBasicMaterial>*/}
 			</Text3D>
 
 			{/* eslint-disable-next-line */}

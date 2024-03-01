@@ -18,12 +18,12 @@ function App() {
 					justifyContent: "center",
 					pointerEvents: "none",
 				}}>
-				<h1
+				{/* <h1
 					style={{
 						color: "black",
 					}}>
 					click on the outdoors 3d text to go to a new page...
-				</h1>
+				</h1> */}
 			</div>
 			<Canvas
 				shadows
